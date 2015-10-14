@@ -2,12 +2,12 @@
 <html class=" enhanced fonts-loaded" lang="en-US"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><title>FullName is smart, funny, and smells nice too - Bocoup</title> <meta name="description" content="For The Web and Whatever Comes Next"> <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://bocoup.com/feed"> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="js-enhanced" content="https://bocoup.com/wp-content/themes/bocoup/assets/js/dist/enhanced.js"> <link rel="icon" href="https://static.bocoup.com/assets/2015/10/06163533/favicon.png" sizes="32x32"> <link rel="icon" href="https://static.bocoup.com/assets/2015/10/06163533/favicon.png" sizes="192x192"> <link rel="apple-touch-icon-precomposed" href="https://static.bocoup.com/assets/2015/10/06163533/favicon.png"> <meta name="msapplication-TileImage" content="https://static.bocoup.com/assets/2015/10/06163533/favicon.png"> <link rel="stylesheet" type="text/css" href="base_files/style.css"> </head> <body class="archive author author-brian-j-brennan author-48"> <a href="#main" class="a11y-only">Skip to content</a> <header class="masthead" role="banner"> <div class="col-fullwidth"> <h1 class="logo"><a href="https://bocoup.com/"><img src="base_files/bocoup.png" alt="Bocoup"></a></h1> <span class="nav-item" role="presentation"><a class="btn nav-cta" href="https://bocoup.com/contact" role="menuitem">Contact Us</a></span> <nav class="site-nav" role="navigation"><span class="nav-item" role="presentation"><a href="https://bocoup.com/work" role="menuitem">Work</a></span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services" class="menu-item-has-children" role="menuitem">Services</a> <div class="sub-menu"> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/datavis" role="menuitem">Data Visualization</a> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/deployment" role="menuitem">Deployment</a> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/design" role="menuitem">Design</a> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/training" role="menuitem">Training</a> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/web-applications" role="menuitem">Web Applications</a> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/services/web-connected-devices" role="menuitem">Web Connected Devices</a> </span> </div> </span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/about" role="menuitem">About</a></span> <span class="nav-item" role="presentation"><a href="https://bocoup.com/weblog" class="current_page_parent" role="menuitem">Blog</a></span> </nav> </div> <div class="current-section section-landing author-landing"> <h2 class="section-hed">FullName</h2> <p class="landing-subhed">Open Web Engineer</p> <div class="author-meta"><a href="https://twitter.com/GHUSER">Twitter</a><a href="https://github.com/GHUSER">GitHub</a><a href="http://bjb.io/">Website</a></div> </div> </header> <main role="main" id="main"> <div class="col-fullwidth author-bio"> <div class="col-ab_ col-inset-static"> <div class="author-avatar"> <img id="avatar" src="https://twitter.com/GHUSER/profile_image?size=original" sizes="(min-width: 1200px) 360px, (min-width: 30em) 30vw, 91.1428571vw" aria-describedby="coop-author"> </div> <div id="coop-author" class="author-desc col-inset-static"> <div class="post-body"> <p id="desc">FirstName
  thinks code, art, and jokes are a grand slam, and tries to apply all
-three to his everyday life. Pronoun is the creator of loads of NPM modules,
-and writes his deep thoughts and feelings in his Lisa Frank Light Up
-Diary.</p> <p id="hist">Before joining Bocoup, pronoun was a senior developer at the
+three to pronounObjective everyday life. PronounSubjective isVerb the creator of loads of NPM modules,
+and writesVerb pronounObjective deep thoughts and feelings in pronounObjective Lisa Frank Light Up
+Diary.</p> <p id="hist">Before joining Bocoup, pronounSubjective wasVerb a senior developer at the
 Mozilla Foundation and, before that, taught and evaluated computer
-science education for at-risk sloths. Pronoun is the organizer of Meetup,
- a developer meetup based in Location – one of several ventures pronoun has
+science education for at-risk sloths. PronounSubjective isVerb the organizer of Meetup,
+ a developer meetup based in Location – one of several ventures pronounSubjective hasVerb
 become involved in to attract more people to the open web development
 community.</p> </div> </div> </div> </div>
 
@@ -18,17 +18,49 @@ location.search.substr(1).split("&").forEach(function(item) {queryDict[item.spli
 console.log(queryDict)
 console.log($('#desc').text())
 
-if (!queryDict.pronoun) queryDict.pronoun = 'He' // not making a statement, just keeping backwards compatibility with the initial links.
+if (!queryDict.pronoun) queryDict.pronoun = 'He,His' // not making a statement, just keeping backwards compatibility with the initial links.
+// common pronoun for compatibility with previous links
+if (queryDict.pronoun==="She") queryDict.pronoun = 'She,Her'
+if (queryDict.pronoun==="They") queryDict.pronoun = 'They,Their'
+if (queryDict.pronoun.match(/^They/)) queryDict.pluralVerbs = true
+var pronouns = { 
+  subjective: queryDict.pronoun.split(/[,\/]/)[0],
+  objective: queryDict.pronoun.split(/[,\/]/)[1]
+};
+var verbs = {
+  is: {
+    plural: 'are'
+  },
+  writes: {
+    plural: 'write'
+  },
+  was: {
+    plural: 'were'
+  },
+  has: {
+    plural: 'have'
+  }
+}
 
 $('#desc').text($('#desc').text().replace('FirstName', queryDict.full.split(' ')[0]))
 $('title').text($('title').text().replace('FullName', queryDict.full))
 $('#hist').text($('#hist').text().replace('Meetup', queryDict.meetup))
 $('#hist').text($('#hist').text().replace('Location', queryDict.city))
 
-$('#hist').text($('#hist').text().replace('Pronoun', queryDict.pronoun))
-$('#hist').text($('#hist').text().replace('pronoun', queryDict.pronoun.toLowerCase()))
-$('#desc').text($('#desc').text().replace('Pronoun', queryDict.pronoun))
-$('#desc').text($('#desc').text().replace('pronoun', queryDict.pronoun.toLowerCase()))
+$('#hist').text($('#hist').text().replace(/PronounSubjective/g, pronouns.subjective))
+$('#hist').text($('#hist').text().replace(/pronounSubjective/g, pronouns.subjective.toLowerCase()))
+$('#desc').text($('#desc').text().replace(/PronounSubjective/g, pronouns.subjective))
+$('#desc').text($('#desc').text().replace(/pronounSubjective/g, pronouns.subjective.toLowerCase()))
+$('#hist').text($('#hist').text().replace(/PronounObjective/g, pronouns.objective))
+$('#hist').text($('#hist').text().replace(/pronounObjective/g, pronouns.objective.toLowerCase()))
+$('#desc').text($('#desc').text().replace(/PronounObjective/g, pronouns.objective))
+$('#desc').text($('#desc').text().replace(/pronounObjective/g, pronouns.objective.toLowerCase()))
+
+for (var verb in verbs) {
+  var replacement = (queryDict.pluralVerbs)?verbs[verb].plural:verb;
+  $('#hist').text($('#hist').text().replace(new RegExp(verb+'Verb','g'), replacement))
+  $('#desc').text($('#desc').text().replace(new RegExp(verb+'Verb','g'), replacement))
+}
 
 $('h2.section-hed').text($('h2.section-hed').text().replace('FullName', queryDict.full))
 $('a').each(function () {
